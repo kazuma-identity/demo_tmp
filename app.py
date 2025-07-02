@@ -180,6 +180,7 @@ if st.session_state.ai_responding and st.session_state.chat[-1]["sender"] == "us
             st.session_state.ai_responding = False
 
         assistant_msg.write_stream(stream())
+        st.rerun()
 
 # ── 10. 実行 ──────────────────────────────────────────────
 if __name__ == "__main__":
