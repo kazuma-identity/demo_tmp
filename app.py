@@ -352,15 +352,15 @@ def main():
 
                     response_placeholder.markdown(full_response)
                     st.session_state.chat.append({"sender": "ai", "text": full_response})
-
                     st.session_state.ai_responding = False
 
-                    # AIの応答音声を生成して保存
-                    if full_response:
-                        ai_audio = text_to_speech(full_response)
-                        if ai_audio:
-                            st.session_state["last_ai_audio"] = ai_audio
+                    # ❷ 音声生成（再生はまだしない）
+                    ai_audio = text_to_speech(full_response)
+                    if ai_audio:
+                        # ── 右ペイン共通処理に渡すために保存するだけ ──
+                        st.session_state["last_ai_audio"] = ai_audio
 
+                    # ❸ ここで rerun して画面を描画し直す
                     st.rerun()
 
 if __name__ == "__main__":
