@@ -6,7 +6,7 @@ from io import BytesIO
 from datetime import datetime
 from openai import OpenAI
 from dotenv import load_dotenv
-from streamlit_audiorecorder import audio_recorder
+from audio_recorder_streamlit import audio_recorder
 
 # 環境変数の読み込み
 load_dotenv()
@@ -21,10 +21,7 @@ st.set_page_config(
 # ===== ユーティリティ関数 =====
 def get_client():
     """OpenAIクライアントを取得"""
-    api_key = os.getenv("OPENAI_API_KEY", "")
-    if api_key and api_key.startswith("sk-"):
-        return OpenAI(api_key=api_key)
-    return None
+    return OpenAI()
 
 
 def hash_audio(audio_bytes):
